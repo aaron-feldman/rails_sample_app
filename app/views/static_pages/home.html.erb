@@ -1,4 +1,5 @@
 <% if logged_in? %>
+  We're in the Home Page, but signed in: What do we want here?
   <div class="row">
     <aside class="col-md-4">
       <section class="user_info">
@@ -8,11 +9,12 @@
         <%= render 'shared/stats' %>
       </section>
       <section class="micropost_form">
-        <%= render 'shared/micropost_form' %>
+       <%= render 'shared/micropost_form' %>
       </section>
     </aside>
     <div class="col-md-8">
-      <h3>Micropost Feed</h3>
+      
+      <h3>Home Feed</h3>
       <%= render 'shared/feed' %>
     </div>
   </div>

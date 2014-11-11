@@ -10,6 +10,10 @@ class UsersController < ApplicationController
     
   def show
     @user = User.find(params[:id])
+    #adding @micropost for highfive on userpages
+    @micropost = current_user.microposts.build if logged_in?
+    #@feed_recieved_items = @user.feed_recieved.paginate(page: params[:page])
+    @feed_recieved_items = @user.feed_recieved #.paginate(page: params[:page])
     @microposts = @user.microposts.paginate(page: params[:page])
   end
 

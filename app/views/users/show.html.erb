@@ -2,23 +2,36 @@
 <div class="row">
   <aside class="col-md-4">
     <section>
-      <h1>
+      <h1 class="text-align: center;">
+        <%= @user.name %><br>
         <%= gravatar_for @user %>
-        <%= @user.name %>
       </h1>
     </section>
     <section class="stats">
       <%= render 'shared/stats' %>
     </section>
+    
+    <section class="stats">
+      <%= render 'follow_form' if logged_in? %>
+    </section>
+    
+    <!-- # TODO needs to be set on own page from link -->
+    <section class="micropost_form">
+      <%= render 'shared/micropost_form' %>
+    </section>
   </aside>
-  <div class="col-md-8">
-    <%= render 'follow_form' if logged_in? %>
-    <% if @user.microposts.any? %>
-      <h3>Microposts (<%= @user.microposts.count %>)</h3>
-      <ol class="microposts">
-        <%= render @microposts %>
-      </ol>
-      <%= will_paginate @microposts %>
-    <% end %>
-  </div>
+  
+ <!-- # These are HighFives from user -->
+ <div class="col-md-8">
+   <!-- # These are HighFives about user -->
+   <%= render 'shared/feed_recieved' %>
+    <!-- # These are HighFives from user -->
+   <% if @user.microposts.any? %>
+     <h3>who I'm high fiving (<%= @user.microposts.count %>)</h3>
+     <ol class="microposts">
+       <%= render @microposts[0..2] %>
+     </ol>
+     <!-- #<%= will_paginate @microposts %> -->
+   <% end %>
+ </div>
 </div>

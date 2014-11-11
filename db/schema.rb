@@ -16,11 +16,16 @@ ActiveRecord::Schema.define(version: 20141105162005) do
   create_table "microposts", force: true do |t|
     t.text     "content"
     t.integer  "user_id"
+    t.integer  "by_id"
+    t.integer  "about_id"
+    t.boolean  "published"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "picture"
   end
 
+  add_index "microposts", ["about_id"], name: "index_microposts_on_about_id"
+  add_index "microposts", ["by_id"], name: "index_microposts_on_by_id"
   add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
   add_index "microposts", ["user_id"], name: "index_microposts_on_user_id"
 

@@ -12,4 +12,15 @@
     </strong>
     followers
   </a>
+  
+  <a href="<%= followers_user_path(@user) %>">
+    <strong id="followers" class="stat">
+      <% if @feed_recieved_items.nil?%>
+        0
+      <% else %>
+        <%= @feed_recieved_items.count %>
+      <% end %>
+    </strong>
+    highfives
+  </a>
 </div>

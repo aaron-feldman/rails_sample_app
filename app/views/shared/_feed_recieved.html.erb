@@ -1,0 +1,6 @@
+<% if !@feed_recieved_items.nil? && @feed_recieved_items.any? %>
+  <h3>who's high fiving me (<%= @feed_recieved_items.count %>)</h3>
+  <ol class="microposts">
+    <%= render @feed_recieved_items[0..2] %>
+  </ol>
+<% end %>

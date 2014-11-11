@@ -84,6 +84,11 @@ class User < ActiveRecord::Base
     Micropost.from_users_followed_by(self)
   end
   
+  # Returns a user's status feed.
+  def feed_recieved
+    Micropost.about_a_user(self)
+  end
+  
   # Follows a user.
   def follow(other_user)
     active_relationships.create(followed_id: other_user.id)

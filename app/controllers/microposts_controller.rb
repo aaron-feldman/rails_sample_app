@@ -6,6 +6,7 @@ class MicropostsController < ApplicationController
     @micropost = current_user.microposts.build(micropost_params)
     if @micropost.save
       flash[:success] = "Micropost created!"
+      # TODO need to update to last page
       redirect_to root_url
     else
       @feed_items = []
@@ -22,11 +23,7 @@ class MicropostsController < ApplicationController
   private
   
     def micropost_params
-      params.require(:micropost).permit(:content, :picture)
-    end
-
-    def micropost_params
-      params.require(:micropost).permit(:content)
+      params.require(:micropost).permit(:content, :about_id, :picture)
     end
     
     def correct_user
