@@ -9,10 +9,12 @@ class UsersController < ApplicationController
     
   def show
     @user = User.find(params[:id])
-    #adding @micropost for highfive on userpages
-    @micropost = current_user.microposts.build if logged_in?
+    # TODO: for highfive on userpages with modal uncomment next line, then can remove highfive method and highfive.html.erb  
+    #@micropost = current_user.microposts.build if logged_in?
+    
+    # This was the original user feed that was paginated
     #@feed_recieved_items = @user.feed_recieved.paginate(page: params[:page])
-    @feed_recieved_items = @user.feed_recieved #.paginate(page: params[:page])
+    @feed_recieved_items = @user.feed_recieved
     @microposts = @user.microposts.paginate(page: params[:page])
   end
 
@@ -65,12 +67,11 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
   
+  # Method for separate highfive page. If no logged_in? redirects to sign in/up
   def highfive
     if logged_in?
       @micropost = current_user.microposts.build
       render 'highfive'
-    else
-      render 'new'
     end
   end
 
@@ -81,14 +82,15 @@ class UsersController < ApplicationController
                                    :password_confirmation)
     end
     
+    # This is duplicated in applications controller
     # Confirms a logged-in user.
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
+    # def logged_in_user
+    #   unless logged_in?
+    #     store_location
+    #     flash[:danger] = "Please log in."
+    #     redirect_to login_url
+    #   end
+    # end
     
     # Confirms the correct user.
     def correct_user

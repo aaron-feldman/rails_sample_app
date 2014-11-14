@@ -1,9 +1,16 @@
-<% unless current_user?(@user) %>
-  <div id="follow_form">
-  <% if current_user.following?(@user) %>
-    <%= render 'unfollow' %>
-  <% else %>
-    <%= render 'follow' %>
+<% if logged_in? %>
+  <% unless current_user?(@user) %>
+    <div id="follow_form">
+    <% if current_user.following?(@user) %>
+      <%= render 'unfollow' %>
+    <% else %>
+      <%= render 'follow' %>
+    <% end %>
+    </div>
   <% end %>
+<% else %>
+  <div id="follow_form">
+    <% store_location %>
+    <%= link_to "follow", login_url, class: "btn btn-primary" %>
   </div>
 <% end %>

@@ -58,6 +58,10 @@ h2 {
   color: $gray-light;
 }
 
+h3 {
+  text-align: center;
+}
+
 p {
   font-size: 1.1em;
   line-height: 1.7em;
@@ -143,15 +147,6 @@ aside {
       margin-top: 0px;
     }
   }
-}
-
-.gravatar {
-  float: left;
-  margin-right: 10px;
-}
-
-.gravatar_edit {
-  margin-top: 15px;
 }
 
 .gravatar {
