@@ -15,9 +15,8 @@
       <%= render 'follow_form' if logged_in? %>
     </section>
     
-    <!-- # TODO needs to be set on own page from link -->
-    <section class="micropost_form">
-      <%= render 'shared/micropost_form' %>
+    <section>
+      <%= link_to "HighFive", highfive_user_path, class: "btn btn-primary" %>
     </section>
   </aside>
   
