@@ -19,6 +19,9 @@
       <%= yield %>
       <%= render 'layouts/footer' %>
       <%= debug(params) if Rails.env.development? %>
+      
+      <!-- Added for modal login -->
+      <%= render 'layouts/modal_login' if not logged_in? %>
     </div>
   </body>
 </html>
