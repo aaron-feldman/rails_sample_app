@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy,
-                                        :following, :followers]
+  #before_action :logged_in_user, only: [:index, :edit, :update, :destroy,                                               :following, :followers]
+  before_action :logged_in_user, only: [:edit, :update, :destroy,                                                       :following, :followers]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
   
@@ -25,10 +25,13 @@ class UsersController < ApplicationController
       flash[:info] = "Please check your email to activate your account."
       
       # for modal sign in
-      redirect_to :back   #redirect_to root_url
+      #redirect_to root_url 
+      redirect_to :back  
     else
       #for modal sign in
-      redirect_to :back   #render 'new'
+      render 'new' 
+      #redirect_to :back  
+
     end
   end
 

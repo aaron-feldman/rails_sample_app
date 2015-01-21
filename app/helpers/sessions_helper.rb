@@ -70,7 +70,7 @@ module SessionsHelper
   # For login modal, if login failure, set true, else false.
   def sign_up_failure?
     # TODO: "make a more robust catch for proper warning cases for Signup fail"
-    return flash[:warning] == "Invalid email/password combination"
+    return false
   end
    
 end
