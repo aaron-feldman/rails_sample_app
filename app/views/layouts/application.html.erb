@@ -10,18 +10,38 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
-  <body>
+  <body>    
     <%= render 'layouts/header' %>
     <div class="container">
-      <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% if !log_in_failure? %>
+        <% flash.each do |message_type, message| %>
+          <div class="alert alert-<%= message_type %>"><%= message %></div>
+        <% end %>
+      <% elsif log_in_failure? %>
+        <!-- Re-opens modal if there is a sign in error -->
+        <script type="text/javascript">
+          $(document).ready(function() {
+            $("#logInModalButton").trigger('click');
+          });
+        </script>
+      <% else %>
+        <script type="text/javascript">
+          $(document).ready(function() {
+            $("#signUpModalButton").trigger('click');
+          });
+        </script>
       <% end %>
+      
       <%= yield %>
+      
       <%= render 'layouts/footer' %>
-      <%= debug(params) if Rails.env.development? %>
       
       <!-- Added for modal login -->
       <%= render 'layouts/modal_login' if not logged_in? %>
+      <%= render 'layouts/modal_signup' if not logged_in? %>
+
+      
+      <%= debug(params) if Rails.env.development? %>
     </div>
   </body>
 </html>

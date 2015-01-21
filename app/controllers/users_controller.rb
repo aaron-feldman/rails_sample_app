@@ -14,7 +14,8 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    # TODO: "could probably put @user into ApplicationsController???"
+    @user = User.new   #put into form ... so it's accessible everywhere
   end
 
   def create
@@ -22,9 +23,12 @@ class UsersController < ApplicationController
     if @user.save
       @user.send_activation_email
       flash[:info] = "Please check your email to activate your account."
-      redirect_to root_url
+      
+      # for modal sign in
+      redirect_to :back   #redirect_to root_url
     else
-      render 'new'
+      #for modal sign in
+      redirect_to :back   #render 'new'
     end
   end
 
@@ -69,14 +73,15 @@ class UsersController < ApplicationController
                                    :password_confirmation)
     end
     
-    # Confirms a logged-in user.
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
+    # Already inherited from ApplicationsController
+    # # Confirms a logged-in user.
+    # def logged_in_user
+    #   unless logged_in?
+    #     store_location
+    #     flash[:danger] = "Please log in."
+    #     redirect_to login_url
+    #   end
+    # end
     
     # Confirms the correct user.
     def correct_user

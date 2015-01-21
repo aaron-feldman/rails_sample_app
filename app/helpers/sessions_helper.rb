@@ -60,5 +60,17 @@ module SessionsHelper
   def store_location
     session[:forwarding_url] = request.url if request.get?
   end
+  
+  # For login modal, if login failure, set true, else false.
+  def log_in_failure?
+    # TODO: "make a more robust catch for proper warning cases for login fail"
+    return flash[:warning] == "Invalid email/password combination"
+  end
+  
+  # For login modal, if login failure, set true, else false.
+  def sign_up_failure?
+    # TODO: "make a more robust catch for proper warning cases for Signup fail"
+    return flash[:warning] == "Invalid email/password combination"
+  end
    
 end
